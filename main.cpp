@@ -40,9 +40,9 @@ void run_pipeline(int argc, char* argv[]);
 
 int main(int argc, char* argv[])
 {
-    int working_mode = REPREQ;
-//    int working_mode = PUBSUB;
-//    int working_mode = PIPELINE;
+   int working_mode = REPREQ;
+  //int working_mode = PUBSUB;
+ // int working_mode = PIPELINE;
 
 
     if (working_mode == REPREQ)
@@ -56,6 +56,7 @@ int main(int argc, char* argv[])
 }
 
 
+/// Run 77	Request Reply
 void run_repreq(int argc, char* argv[])
 {
 //    std::cout << argc << std::endl;
@@ -69,24 +70,43 @@ void run_repreq(int argc, char* argv[])
     {
         nnxx::socket s1 { nnxx::SP, nnxx::REP };
         std::cout << "I am server" << std::endl;
-        s1.bind("tcp://*:18913");
-        std::string rcvstr = s1.recv<std::string>();
-        std::cout << "Server received " << rcvstr << std::endl;
-        //        std::string rcvstr = "blablabla";
-        s1.send(std::string{rcvstr});
+   //    s1.bind("tcp://*:18913");
+		//s1.bind("ipc:///tmp/subscriptionservice.ipc");
+	
+        //std::string rcvstr = s1.recv<std::string>();
+        //std::cout << "Server received " << rcvstr << std::endl;
+        //   //std::string rcvstr = "blablabla";
+        //s1.send(std::string{rcvstr});
     }
     else if (std::string(argv[1]) == "client")
     {
         nnxx::socket s2 { nnxx::SP, nnxx::REQ };
         std::cout << "I am client" << std::endl;
-        s2.connect("tcp://127.0.0.1:18913");
-        std::string input = "Hello nanomsg, test repreq";
+        s2.bind("ipc:///tmp/subscriptionservice.ipc");
+      //  std::string input = "Hello nanomsg, test repreq";
+		std::string input = "{\r\n    \"$schema\" : \"../../../Schemas/AddMonitoredItemsRequestMessage.schema.json\",\r\n    \"messageType\": \"AddMonitoredItemsRequestMessage\",\r\n    \"message\": {\r\n        \"subscriptionId\": 3,\r\n        \"monitoredItems\":[\r\n            {\"deviceId\": \"9ee470ae-4231-11e8-842f-0ed5f89f718b\", \"nodeId\":\"pv\", \"isOnline\": false, \"samplingInterval\":1000, \"itemId\":0},\r\n            {\"deviceId\": \"9ee470ae-4231-11e8-842f-0ed5f89f718b\", \"nodeId\":\"pv_unit\", \"isOnline\": false, \"samplingInterval\":10000, \"itemId\":1},\r\n            {\"deviceId\": \"9ee470ae-4231-11e8-842f-0ed5f89f718b\", \"nodeId\":\"pv_pressure\", \"isOnline\": false, \"samplingInterval\":6500, \"itemId\":2},\r\n            {\"deviceId\": \"9ee470ae-4231-11e8-842f-0ed5f89f718b\", \"nodeId\":\"pv_flow\", \"isOnline\": true, \"samplingInterval\":5000, \"itemId\":3}\r\n        ]\r\n    }\r\n}";
         s2.send(input);
         std::cout << "Client req " << input << std::endl;
         std::string rcvstr = to_string(s2.recv());
         std::cout << "Client ack " << rcvstr << std::endl;
     }
 }
+
+
+/// end  Here   Run 77	Request Reply
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 void run_pubsub(int argc, char* argv[])
 {
@@ -107,9 +127,11 @@ void run_pubsub(int argc, char* argv[])
             exit(-1);
         }
         nnxx::socket syncsrv { nnxx::SP, nnxx::REP };
-        syncsrv.bind("tcp://*:5557");
+      //  syncsrv.bind("tcp://*:5557");
+		syncsrv.bind("ipc:///tmp/subscriptionservice.ipc");
         nnxx::socket s1 { nnxx::SP, nnxx::PUB };
-        s1.bind("tcp://*:5556");
+      //  s1.bind("tcp://*:5556");
+		s1.bind("ipc:///tmp/subscriptionservice.ipc");
         std::cout << "I am pub server" << std::endl;
 
         int n_subs = 2;
@@ -120,7 +142,7 @@ void run_pubsub(int argc, char* argv[])
                 << std::endl;
 
         std::vector<std::string> subs;
-        while (subs.size()<n_subs)
+        while (subs.size() < n_subs)
         {
             std::string sub = syncsrv.recv<std::string>();
             if (std::find(subs.begin(), subs.end(), sub) == subs.end())
@@ -150,11 +172,11 @@ void run_pubsub(int argc, char* argv[])
             exit(-1);
         }
         nnxx::socket syncsrv { nnxx::SP, nnxx::REQ };
-        syncsrv.connect("tcp://127.0.0.1:5557");
+        syncsrv.connect("ipc:///tmp/subscriptionservice.ipc");
 
         nnxx::socket s2 { nnxx::SP, nnxx::SUB };
-        s2.connect("tcp://127.0.0.1:5556");
-        nnxx::subscribe(s2);
+        s2.connect("ipc:///tmp/subscriptionservice.ipc");
+      ///  nnxx::subscribe(s2);
 
         std::cout << "sync client on" << std::endl;
         std::string subname(argv[2]);
@@ -193,9 +215,12 @@ void run_pipeline(int argc, char* argv[])
             exit(-1);
         }
         nnxx::socket syncsrv { nnxx::SP, nnxx::REP };
-        syncsrv.bind("tcp://*:5557");
+       // syncsrv.bind("tcp://*:5557");
+		syncsrv.bind("ipc:///tmp/subscriptionservice.ipc");
         nnxx::socket s1 { nnxx::SP, nnxx::PUSH };
-        s1.bind("tcp://*:5556");
+       // s1.bind("tcp://*:5556");
+		s1.bind("ipc:///tmp/subscriptionservice.ipc");
+
         std::cout << "I am a push server" << std::endl;
 
         std::cout << "sync server on" << std::endl;
@@ -213,7 +238,7 @@ void run_pipeline(int argc, char* argv[])
             }
         }
 
-        for (int i = 0; i<100; i++)
+        for (int i = 0; i<10; i++)
         {
             std::stringstream ss;
             ss << "HW: " << i+1;
@@ -234,11 +259,12 @@ void run_pipeline(int argc, char* argv[])
             exit(-1);
         }
         nnxx::socket syncsrv { nnxx::SP, nnxx::REQ };
-        syncsrv.connect("tcp://127.0.0.1:5557");
+        syncsrv.connect("ipc:///tmp/subscriptionservice.ipc");
+		//syncsrv.connect("tcp://127.0.0.1:5557");
 
         nnxx::socket s2 { nnxx::SP, nnxx::PULL };
-        s2.connect("tcp://127.0.0.1:5556");
-//        nnxx::subscribe(s2);
+        s2.connect("ipc:///tmp/subscriptionservice.ipc");
+        nnxx::subscribe(s2);
 
         std::cout << "sync client on" << std::endl;
         std::string subname(argv[2]);

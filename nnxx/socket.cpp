@@ -24,11 +24,13 @@
 
 #include <algorithm>
 #include <cstring>
-#include <nnxx/error.h>
-#include <nnxx/message.h>
-#include <nnxx/message_control.h>
-#include <nnxx/message_iterator.h>
-#include <nnxx/socket.h>
+#include<nn.h>
+
+#include <error.h>
+#include <message.h>
+#include <message_control.h>
+#include <message_iterator.h>
+#include <socket.h>
 
 namespace nnxx {
 

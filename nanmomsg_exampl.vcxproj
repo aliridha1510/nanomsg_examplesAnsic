@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{F4491EE6-A4ED-423E-9FB3-5E2466EAFC47}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\Program Files %28x86%29\nanomsg\lib;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\Program Files %28x86%29\nanomsg\lib;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\nanomsg\include\lib;C:\Users\ali.haouari\Desktop\nanomsg\nanomsg_examples\nnxx;C:\Users\ali.haouari\Desktop\nanomsg\nanomsg_examples;C:\Program Files %28x86%29\nanomsg\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>d3d9.lib;C:\Program Files (x86)\nanomsg\lib\nanomsg.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6 Tools\x64;C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\Bin\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\nanomsg\include\lib;C:\Users\ali.haouari\Desktop\nanomsg\nanomsg_examples\nnxx;C:\Users\ali.haouari\Desktop\nanomsg\nanomsg_examples;C:\Program Files %28x86%29\nanomsg\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>d3d9.lib;C:\Program Files (x86)\nanomsg\lib\nanomsg.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6 Tools\x64;C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\Bin\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="nanomsg\ext\nnxx_ext.c" />
+    <ClCompile Include="nnxx\error.cpp" />
+    <ClCompile Include="nnxx\message.cpp" />
+    <ClCompile Include="nnxx\message_control.cpp" />
+    <ClCompile Include="nnxx\message_istream.cpp" />
+    <ClCompile Include="nnxx\message_iterator.cpp" />
+    <ClCompile Include="nnxx\message_ostream.cpp" />
+    <ClCompile Include="nnxx\message_streambuf.cpp" />
+    <ClCompile Include="nnxx\nn.cpp" />
+    <ClCompile Include="nnxx\poll.cpp" />
+    <ClCompile Include="nnxx\pubsub.cpp" />
+    <ClCompile Include="nnxx\reqrep.cpp" />
+    <ClCompile Include="nnxx\socket.cpp" />
+    <ClCompile Include="nnxx\survey.cpp" />
+    <ClCompile Include="nnxx\tcp.cpp" />
+    <ClCompile Include="nnxx\timeout.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="nanomsg\ext\nnxx_ext.h" />
+    <ClInclude Include="nnxx\bus.h" />
+    <ClInclude Include="nnxx\chrono.h" />
+    <ClInclude Include="nnxx\error.h" />
+    <ClInclude Include="nnxx\inproc.h" />
+    <ClInclude Include="nnxx\ipc.h" />
+    <ClInclude Include="nnxx\message.h" />
+    <ClInclude Include="nnxx\message_control.h" />
+    <ClInclude Include="nnxx\message_istream.h" />
+    <ClInclude Include="nnxx\message_istream.hpp" />
+    <ClInclude Include="nnxx\message_iterator.h" />
+    <ClInclude Include="nnxx\message_ostream.h" />
+    <ClInclude Include="nnxx\message_ostream.hpp" />
+    <ClInclude Include="nnxx\message_streambuf.h" />
+    <ClInclude Include="nnxx\message_streambuf.hpp" />
+    <ClInclude Include="nnxx\nn.h" />
+    <ClInclude Include="nnxx\pair.h" />
+    <ClInclude Include="nnxx\pipeline.h" />
+    <ClInclude Include="nnxx\poll.h" />
+    <ClInclude Include="nnxx\pubsub.h" />
+    <ClInclude Include="nnxx\reqrep.h" />
+    <ClInclude Include="nnxx\socket.h" />
+    <ClInclude Include="nnxx\socket.hpp" />
+    <ClInclude Include="nnxx\survey.h" />
+    <ClInclude Include="nnxx\tcp.h" />
+    <ClInclude Include="nnxx\timeout.h" />
+    <ClInclude Include="nnxx\unittest.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
